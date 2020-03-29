@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MessageModule } from './message/message.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import databaseConfig from 'src/config/database.config';
+import { TypeOrmConfigService } from 'src/typeorm-config.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      host: 'localhost',
-      port: 27017,
-      database: 'message-board',
-      entities: ['dist/**/*.entity{ .ts,.js}'],
-      synchronize: true,
+    ConfigModule.forRoot({ load: [databaseConfig] }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: TypeOrmConfigService,
     }),
     MessageModule,
   ],
