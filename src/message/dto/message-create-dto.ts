@@ -8,6 +8,6 @@ export class MessageCreateDto {
 
   @IsNotEmpty()
   @IsString()
-  @MinLength(3)
+  @MinLength(2)
   readonly author: string;
 }

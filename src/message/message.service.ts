@@ -15,7 +15,7 @@ export class MessageService {
     return await this.messageRepository.save(messageCreateDto);
   }
 
-  get(message: Message): Message {
+  retrieve(message: Message): Message {
     return message;
   }
 
@@ -23,10 +23,15 @@ export class MessageService {
     message: Message,
     messageCreateDto: MessageCreateDto,
   ): Promise<Message> {
-    return this.messageRepository.merge(message, messageCreateDto);
+    const updatedMessage = { ...message, ...messageCreateDto };
+    return this.messageRepository.save(updatedMessage);
   }
 
   async delete(message: Message): Promise<Message> {
     return this.messageRepository.remove(message);
+  }
+
+  async index(): Promise<Message[]> {
+    return this.messageRepository.find();
   }
 }

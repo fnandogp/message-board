@@ -20,25 +20,32 @@ export class MessageController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  create(@Body() messageCreateDto: MessageCreateDto) {
+  create(@Body() messageCreateDto: MessageCreateDto): Promise<Message> {
     return this.messageServices.create(messageCreateDto);
   }
 
   @Get(':message')
-  retrieve(@Param('message', ParseEntityPipe) message: Message) {
-    return this.messageServices.get(message);
+  retrieve(@Param('message', ParseEntityPipe) message: Message): Message {
+    return this.messageServices.retrieve(message);
   }
 
   @Put(':message')
   update(
     @Param('message', ParseEntityPipe) message: Message,
     @Body() messageCreateDto: MessageCreateDto,
-  ) {
+  ): Promise<Message> {
     return this.messageServices.update(message, messageCreateDto);
   }
 
   @Delete(':message')
-  delete(@Param('message', ParseEntityPipe) message: Message) {
+  delete(
+    @Param('message', ParseEntityPipe) message: Message,
+  ): Promise<Message> {
     return this.messageServices.delete(message);
+  }
+
+  @Get()
+  index(): Promise<Message[]> {
+    return this.messageServices.index();
   }
 }
