@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MessageModule } from './message/message.module';
-import { TypeOrmModule } from '@nestjs/typeorm'
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
       entities: ['dist/**/*.entity{ .ts,.js}'],
       synchronize: true,
     }),
-    MessageModule
+    MessageModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,10 +8,25 @@ import { Repository } from 'typeorm';
 export class MessageService {
   constructor(
     @InjectRepository(Message)
-    private readonly messageRepository: Repository<Message>
+    private readonly messageRepository: Repository<Message>,
   ) {}
 
-  create(messageCreateDto: MessageCreateDto) {
-    return this.messageRepository.save(messageCreateDto);
+  async create(messageCreateDto: MessageCreateDto): Promise<Message> {
+    return await this.messageRepository.save(messageCreateDto);
+  }
+
+  get(message: Message): Message {
+    return message;
+  }
+
+  async update(
+    message: Message,
+    messageCreateDto: MessageCreateDto,
+  ): Promise<Message> {
+    return this.messageRepository.merge(message, messageCreateDto);
+  }
+
+  async delete(message: Message): Promise<Message> {
+    return this.messageRepository.remove(message);
   }
 }
