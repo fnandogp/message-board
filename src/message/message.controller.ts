@@ -12,7 +12,7 @@ import {
 import { MessageService } from './message.service';
 import { MessageCreateDto } from './dto/message-create-dto';
 import { Message } from 'src/message/message.entity';
-import { ParseEntityPipe } from 'src/ParseEntityPipe';
+import { ParseEntityPipe } from 'src/parse-entity.pipe';
 import {
   ApiCreatedResponse,
   ApiBadRequestResponse,
