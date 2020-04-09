@@ -37,7 +37,9 @@ export class MessageController {
   @Get(':message')
   @ApiOkResponse({ description: 'Message retrieved successfully.' })
   @ApiNotFoundResponse({ description: 'Given message not found.' })
-  retrieve(@Param('message', ParseEntityPipe) message: Message): Message {
+  retrieve(
+    @Param('message', ParseEntityPipe) message: Message,
+  ): Promise<Message> {
     return this.messageServices.retrieve(message);
   }
 

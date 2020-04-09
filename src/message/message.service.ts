@@ -15,8 +15,8 @@ export class MessageService {
     return await this.messageRepository.save(messageCreateDto);
   }
 
-  retrieve(message: Message): Message {
-    return message;
+  retrieve(message: Message): Promise<Message> {
+    return Promise.resolve(message);
   }
 
   async update(
