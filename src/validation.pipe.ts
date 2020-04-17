@@ -2,7 +2,6 @@ import {
   PipeTransform,
   Injectable,
   ArgumentMetadata,
-  BadRequestException,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { validate } from 'class-validator';
