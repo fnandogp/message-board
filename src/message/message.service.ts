@@ -15,8 +15,8 @@ export class MessageService {
     return await this.messageRepository.save(messageCreateDto);
   }
 
-  retrieve(message: Message): Promise<Message> {
-    return Promise.resolve(message);
+  async retrieve(message: Message): Promise<Message> {
+    return await Promise.resolve(message);
   }
 
   async update(
@@ -24,14 +24,14 @@ export class MessageService {
     messageCreateDto: MessageCreateDto,
   ): Promise<Message> {
     const updatedMessage = { ...message, ...messageCreateDto };
-    return this.messageRepository.save(updatedMessage);
+    return await this.messageRepository.save(updatedMessage);
   }
 
   async delete(message: Message): Promise<Message> {
-    return this.messageRepository.remove(message);
+    return await this.messageRepository.remove(message);
   }
 
   async index(): Promise<Message[]> {
-    return this.messageRepository.find();
+    return await this.messageRepository.find();
   }
 }
